@@ -1,12 +1,21 @@
 .location-preview {
-    p {
-        padding: 10px;
-    }
-
+    margin-top: 20px;
+    display: flex;
     margin-left: 10px;
+    // position: relative;
 
     &:first-child {
         margin-left: 0;
+    }
+    // &:last-child {
+    //     margin-left: 0;
+    // }
+    p {
+        padding: 10px;
+        font-size: 1.2rem;
+    }
+    .title {
+        font-size: 1.5rem;
     }
 
     .location-card {
@@ -23,18 +32,32 @@
             }
         }
     }
-
-.card-container{
-    .delete-btn{
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 20px;
-        height: 20px;
+    .card-container {
+        .delete-btn {
+            cursor: pointer;
+            align-self: flex-start;
+            bottom: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+        }
     }
-}
 
+
+
+    @include for-narrow-layout {
+        .title {
+            font-size: 1rem;
+        }
+    }
+    @include for-normal-layout {
+        .title {
+            font-size: 1.5rem;
+        }
+    }
     @include for-mobile-layout {
+        margin-left: 0;
+
         p {
             font-size: 12px;
         }

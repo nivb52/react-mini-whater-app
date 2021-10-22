@@ -29,8 +29,8 @@ export const LocationPreview = ({ location }) => {
         }
     }
 
-    const { fToC,setIcon } = weatherService
-    const { Minimum,Maximum } = location.currWeather.Temperature
+    const { fToC, setIcon } = weatherService
+    const { Minimum, Maximum } = location.currWeather.Temperature
 
 
     return (
@@ -38,11 +38,10 @@ export const LocationPreview = ({ location }) => {
             <Card
                 style={{
                     backgroundColor: setBackground()
-
                 }}
                 className="location-card "  >
-                <div className="card-container flex column align-center relative">
-                    <p>{location.info.LocalizedName}</p>
+                <div className="card-container flex column align-center">
+                    <p className="title">{location.info.LocalizedName}</p>
                     <img src={`https://www.accuweather.com/images/weathericons/${setIcon(location.currWeather.Day.Icon)}.svg`} alt="" />
                     <div className="tempature-container flex">
                         <div className="tempature max">
@@ -54,8 +53,7 @@ export const LocationPreview = ({ location }) => {
                             {isCelsius && <p>{fToC(Minimum.Value)} </p>}
                         </div>
                     </div>
-                    
-                    <Trash 
+                    <Trash
                         className='delete-btn pointer'
                         onClick={() => { onRemove() }}
                     />

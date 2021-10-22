@@ -13,6 +13,9 @@ export function AppHeader() {
         setIsMobile(prev => prev = !prev)
     }
 
+
+
+
     const onToggle = () => {
         dispatch(toggleDark())
     }

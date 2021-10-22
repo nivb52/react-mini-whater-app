@@ -7,7 +7,7 @@ import { queryLocations } from '../actions/WeatherActions'
 
 export const Favorites = () => {
 
-    const { favoriteLocations,isDark } = useSelector(state => state.weatherModule)
+    const { favoriteLocations, isDark } = useSelector(state => state.weatherModule)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -20,7 +20,9 @@ export const Favorites = () => {
 
     return (
         <section className={isDark ? 'dark main-container' : 'main-container'}>
-            <LocationList locations={favoriteLocations} />
+            <div className="home-container flex column">
+                <LocationList locations={favoriteLocations} />
+            </div>
         </section>
     )
 }

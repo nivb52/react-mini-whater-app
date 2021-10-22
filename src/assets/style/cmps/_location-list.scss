@@ -1,13 +1,19 @@
 .location-list {
-
+// flex-wrap: wrap;
     .no-favorites {
-        margin-top: -300px;
         display: flex;
         justify-content: center;
+        margin-top: -300px;
 
         align-items: center;
         h1 {
             font-size: 40px;
         }
+    }
+
+    @include for-mobile-layout {
+
+        flex-wrap: nowrap;
+        flex-direction: column;
     }
 }
