@@ -2,19 +2,33 @@
     margin-top: 20px;
     justify-content: space-between;
     .info-container {
-        p{
+        p {
             font-size: 48px;
             margin-left: 10px;
             margin-top: -4px;
         }
-        img{
-
+        img {
             height: 60px;
             width: 60px;
         }
     }
 
+    .current-info {
+        p {
+            line-height: 1.1;
+            font-size: 1.4rem;
+            &:first-child {
+                font-weight: bolder;
+                font-size: 2rem;
+            }
+        }
+    }
 
-    .heart-container{
+    .heart-container {
+        margin-left: 10px;
+        .heart {
+            width: 60px;
+            height: 60px;
+        }
     }
 }

@@ -36,14 +36,10 @@
         .delete-btn {
             cursor: pointer;
             align-self: flex-start;
-            bottom: 0;
-            left: 0;
             width: 20px;
             height: 20px;
         }
     }
-
-
 
     @include for-narrow-layout {
         .title {

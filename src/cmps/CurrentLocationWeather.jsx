@@ -71,7 +71,7 @@ export const CurrentLocationWeather = () => {
                 </div>
             </div>
             <div className="flex">
-                <div className="">
+                <div className="current-info">
                     <p>{currentLocation.LocalizedName}</p>
                     {!isDark && <p>{weather && weather[0]?.Day?.IconPhrase}</p>}
                     {isDark && <p>{weather && weather[0]?.Night?.IconPhrase}</p>}

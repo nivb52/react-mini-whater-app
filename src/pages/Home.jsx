@@ -6,6 +6,7 @@ import { WeatherList } from '../cmps/WeatherList'
 import { useGeolocation } from '../services/customHooks'
 import { weatherService } from '../services/weatherService'
 import { setCurrentLocation } from '../actions/WeatherActions'
+import { WeatherByHour } from '../cmps/WeatherByHour'
 
 
 export const Home = () => {
@@ -35,6 +36,7 @@ export const Home = () => {
                 <CurrentLocationWeather />
                 <SearchBar />
                 <WeatherList />
+                <WeatherByHour />
             </div>
         </section>
     )

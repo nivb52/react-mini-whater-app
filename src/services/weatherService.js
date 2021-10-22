@@ -31,6 +31,16 @@ async function getAutocomplete(q) {
         throw err
     }
 }
+async function getWeatherByHour(locationKey) {
+    console.log("🚀 ~ file: weatherService.js ~ line 35 ~ getWeatherByHour ~ getWeatherByHour", locationKey)
+    try {
+        const resp = await axios.get(`http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${locationKey}?apikey=${KEY}`)
+        return resp.data
+    }
+    catch (err) {
+        throw err
+    }
+}
 
 async function getGeolocation(position) {
     try {
@@ -66,6 +76,7 @@ export const weatherService = {
     getFiveDaysWeather,
     getAutocomplete,
     getGeolocation,
+    getWeatherByHour,
     setIcon,
     fToC
 }
