@@ -1,0 +1,20 @@
+.current-location-container {
+    margin-top: 20px;
+    justify-content: space-between;
+    .info-container {
+        p{
+            font-size: 48px;
+            margin-left: 10px;
+            margin-top: -4px;
+        }
+        img{
+
+            height: 60px;
+            width: 60px;
+        }
+    }
+
+
+    .heart-container{
+    }
+}
