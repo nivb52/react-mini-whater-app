@@ -7,6 +7,7 @@ import { useGeolocation } from '../services/customHooks'
 import { weatherService } from '../services/weatherService'
 import { setCurrentLocation } from '../actions/WeatherActions'
 import { WeatherByHour } from '../cmps/WeatherByHour'
+import { toggleIsMobile } from '../actions/WeatherActions'
 
 
 export const Home = () => {
@@ -14,6 +15,11 @@ export const Home = () => {
     const { isDark } = useSelector(state => state.weatherModule)
     // const location = useGeolocation()
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        checkScreenWidth()
+    }, [])
+
 
     // useEffect(() => {
     //     if (!location.isReady) return
@@ -29,12 +35,19 @@ export const Home = () => {
         console.log(isDark);
     }, [isDark])
 
+    const checkScreenWidth = () => {
+        if (window.innerWidth > 400) {
+            dispatch(toggleIsMobile(false))
+        } else {
+            dispatch(toggleIsMobile(true))
+        }
+    }
+
 
     return (
         <section className={isDark ? 'dark main-container' : 'main-container'} >
             <div className="home-container flex column">
                 <CurrentLocationWeather />
-                <SearchBar />
                 <WeatherList />
                 <WeatherByHour />
             </div>

@@ -1,10 +1,12 @@
 import { locationService } from "../services/locationService";
+import { weatherService } from "../services/weatherService";
 
 
 // Dispatchers
 const _setFilter = (filterBy) => ({ type: 'SET_FILTER', filterBy });
 const _toggleDark = () => ({ type: 'TOGGLE_DARK' });
-const _toggleCelsius = (status) => ({ type: 'TOGGLE_CELSIUS',status });
+const _toggleCelsius = (status) => ({ type: 'TOGGLE_CELSIUS', status });
+const _toggleIsMobile = (status) => ({ type: 'IS_MOBILE', status });
 const _setCurrentLocation = (location) => ({ type: 'SET_LOCATION', location });
 const _saveToFavorites = (location) => ({ type: 'ADD_LOCATION', location });
 const _queryLocations = (locations) => ({ type: 'SET_LOCATIONS', locations });
@@ -13,16 +15,27 @@ const _removeFromFavorites = (locationKey) => ({ type: 'REMOVE_LOCATION', locati
 
 // THUNK
 export function setCurrentLocation(currentLocation) {
-    return async (dispatch) =>{
-        const location = await locationService.setCurrentLocation(currentLocation)
-        dispatch(_setCurrentLocation(location))}
+    return async (dispatch) => {
+        if (!currentLocation.info) {
+            const currentLocationObject = {}
+            const locationWeather = await weatherService.getFiveDaysWeather(currentLocation.Key)
+            currentLocationObject.currWeather = locationWeather
+            // currentLocationObject.currWeather=locationWeather
+            currentLocationObject.info = currentLocation
+            // currentLocationObject.info=location
+            locationService.setCurrentLocation(currentLocationObject)
+            dispatch(_setCurrentLocation(currentLocationObject))
+        }
+        else dispatch(_setCurrentLocation(currentLocation))
+    }
+
 }
 export function saveToFavorites(location) {
     locationService.save(location)
     return (dispatch) => dispatch(_saveToFavorites(location))
 }
 export function queryLocations() {
-    return async (dispatch) => {  
+    return async (dispatch) => {
         const locations = await locationService.query()
         dispatch(_queryLocations(locations))
     }
@@ -39,5 +52,8 @@ export function toggleDark() {
 }
 export function toggleCelsius(status) {
     return (dispatch) => dispatch(_toggleCelsius(status))
+}
+export function toggleIsMobile(status) {
+    return (dispatch) => dispatch(_toggleIsMobile(status))
 }
 

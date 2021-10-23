@@ -4,42 +4,43 @@ import { ReactComponent as Heart } from '../assets/svg/heart.svg'
 import { ReactComponent as FilledHeart } from '../assets/svg/filled-heart.svg'
 import { useDispatch, useSelector } from 'react-redux'
 // import { favoriteLocationService } from '../services/favoriteLocationService'
-import { saveToFavorites, removeFromFavorites, toggleCelsius } from '../actions/WeatherActions'
+import { saveToFavorites, removeFromFavorites, toggleCelsius, setCurrentLocation } from '../actions/WeatherActions'
 import { locationService } from '../services/locationService'
 import { storageService } from '../services/storageService'
 import { weatherService } from '../services/weatherService'
+import { SearchBar } from './SearchBar'
 
 export const CurrentLocationWeather = () => {
     const [isLiking, setIsLiking] = useState(false)
-    const { currentLocation, isCelsius, isDark } = useSelector(state => state.weatherModule)
+    const { currentLocation, isCelsius, isDark, isMobile } = useSelector(state => state.weatherModule)
     const dispatch = useDispatch()
-    const [weather, setWeather] = useState([])
+    // const [weather, setWeather] = useState([])
 
     useEffect(() => {
-        (async () => {
-            // if (!storageService.loadFromStorage('currLocation')) await weatherService.getFiveDaysWeather('215854')
-            // const resp = await weatherService.getFiveDaysWeather()
-            // storageService.saveToStorage('currentWeather', resp)
-            // setWeather(resp)
-            setWeather(storageService.loadFromStorage('currentWeather'))
-        })()
-
+      dispatch(setCurrentLocation(storageService.loadFromStorage('currentLocation'))) //LOCAL
     }, [])
 
 
     useEffect(() => {
+        if(currentLocation){
+            // dispatch(setCurrentLocation(currentLocation)) // API
+        }
         isFavorite()
+
+
     }, [currentLocation])
 
     useEffect(() => {
-        console.log('save');
         (async () => {
-            const isLocationExist = await locationService.getById(currentLocation.Key)
-            if (isLocationExist === undefined) { // Is not favorite
-                if (isLiking) saveToFavorites(currentLocation)
-            }
-            else {
-                if (!isLiking) removeFromFavorites(currentLocation)
+            if(currentLocation){
+
+                const isLocationExist = await locationService.getById(currentLocation.info.Key)
+                if (isLocationExist === undefined) { // Is not favorite
+                    if (isLiking) saveToFavorites(currentLocation)
+                }
+                else {
+                    if (!isLiking) removeFromFavorites(currentLocation) // REVERT
+                }
             }
         })()
     }, [isLiking])
@@ -49,32 +50,36 @@ export const CurrentLocationWeather = () => {
         setIsLiking(status)
     }
     const isFavorite = async () => {
-        const isLocationExist = await locationService.getById(currentLocation.Key)
-        if (isLocationExist !== undefined) { // Is favorite
-            setIsLiking(true)
-        }
-        else {
-            setIsLiking(false)
+        if (currentLocation) {
+            const isLocationExist = await locationService.getById(currentLocation.info.Key)
+            if (isLocationExist !== undefined) { // Is favorite
+                setIsLiking(true)
+            }
+            else {
+                setIsLiking(false)
+            }
         }
     }
 
     return (
         <section className="current-location-container flex">
             <div className="info-container flex">
-                {!isDark && weather && <img src={`https://www.accuweather.com/images/weathericons/${weatherService.setIcon(weather[0]?.Day?.Icon)}.svg`} alt="" />}
-                {isDark && weather && <img src={`https://www.accuweather.com/images/weathericons/${weatherService.setIcon(weather[0]?.Night?.Icon)}.svg`} alt="" />}
-                {isCelsius && <p>{weatherService.fToC(weather[0]?.Temperature?.Minimum.Value)}</p>}
-                {!isCelsius && <p>{weather[0]?.Temperature?.Minimum.Value}</p>}
+                {!isDark && currentLocation && <img src={`https://www.accuweather.com/images/weathericons/${weatherService.setIcon(currentLocation?.currWeather[0]?.Day?.Icon)}.svg`} alt="" />}
+                {isDark && currentLocation && <img src={`https://www.accuweather.com/images/weathericons/${weatherService.setIcon(currentLocation?.currWeather[0]?.Night?.Icon)}.svg`} alt="" />}
+                {isCelsius && <p>{weatherService.fToC(currentLocation?.currWeather[0]?.Temperature?.Minimum.Value)}</p>}
+                {!isCelsius && <p>{currentLocation?.currWeather[0]?.Temperature?.Minimum.Value}</p>}
                 <div className="unit-selector pointer">
                     <span className={isCelsius ? 'bold' : ''} onClick={() => { dispatch(toggleCelsius(true)) }} >°C</span> |
                     <span className={!isCelsius ? 'bold' : ''} onClick={() => { dispatch(toggleCelsius(false)) }}> °F</span>
                 </div>
             </div>
-            <div className="flex">
+            {!isMobile && <SearchBar />}
+
+            <div className="right-container flex">
                 <div className="current-info">
-                    <p>{currentLocation.LocalizedName}</p>
-                    {!isDark && <p>{weather && weather[0]?.Day?.IconPhrase}</p>}
-                    {isDark && <p>{weather && weather[0]?.Night?.IconPhrase}</p>}
+                    <p>{currentLocation?.info?.LocalizedName}</p>
+                    {!isDark && <p>{currentLocation && currentLocation?.currWeather[0]?.Day?.IconPhrase}</p>}
+                    {isDark && <p>{currentLocation && currentLocation?.currWeather[0]?.Night?.IconPhrase}</p>}
                 </div>
 
                 <div className="heart-container pointer">

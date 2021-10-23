@@ -1,30 +1,16 @@
 
 const initialState = {
-    currentLocation: {
-        "Version": 1,
-        "Key": "215854",
-        "Type": "Location",
-        "Rank": 31,
-        "LocalizedName": "Tel Aviv",
-        "Country": {
-            "ID": "IL",
-            "LocalizedName": "Israel"
-        },
-        "AdministrativeArea": {
-            "ID": "TA",
-            "LocalizedName": "Tel Aviv"
-        }
-    },
+    currentLocation: null,
     filterBy: null,
     favoriteLocations: [],
     isDark: false,
     isCelsius: false,
+    isMobile: false,
 }
 
 export default function WeatherReducer(state = initialState, action) {
     switch (action.type) {
         case 'TOGGLE_DARK':
-            console.log('toggle');
             return {
                 ...state,
                 isDark: !state.isDark
@@ -33,6 +19,11 @@ export default function WeatherReducer(state = initialState, action) {
             return {
                 ...state,
                 isCelsius: action.status
+            }
+        case 'IS_MOBILE':
+            return {
+                ...state,
+                isMobile: action.status
             }
         case 'SET_FILTER':
             return {

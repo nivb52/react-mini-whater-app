@@ -1,10 +1,11 @@
-import React, {  useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { weatherService } from '../services/weatherService'
 import { debounce } from 'lodash'
 import { storageService } from '../services/storageService';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentLocation } from '../actions/WeatherActions'
 import { locationService } from '../services/locationService';
+import { ReactComponent as Loupe } from '../assets/svg/loupe.svg'
 
 
 
@@ -20,9 +21,9 @@ export const SearchBar = () => {
 
 
     useEffect(() => {
-        const currLocation = locationService.getDefaultLocation()
-        setLocation(currLocation)
-        dispatch(setCurrentLocation(currLocation))
+        
+        // const currLocation = locationService.getDefaultLocation()
+        // setLocation(currLocation)
 
         setOptions(storageService.loadFromStorage('locationOptions'))
 
@@ -30,10 +31,10 @@ export const SearchBar = () => {
 
     useEffect(() => {
         setDisplay(false)
-        dispatch(setCurrentLocation(location))
+        // dispatch(setCurrentLocation(location))
     }, [location])
 
-   
+
 
     useEffect(() => {
         // (async () => {
@@ -55,18 +56,24 @@ export const SearchBar = () => {
 
     return (
         <section className="search-container">
-            <input
-                onChange={handleChange}
-                type="text"
-                placeholder="Search location" />
-            {!display &&
+            <div className="searchbar flex">
+                <input
+                    onChange={handleChange}
+                    type="text"
+                    placeholder="Search City"
+                    className={isDark?"dark":""}
+                    />
+                    
+                    <Loupe className={isDark?"loupe fill-dark":"loupe"} />
+            </div>
+            {display && //REVERT
                 <div
-                className= {isDark ? ' options-container dark' : 'options-container'}>
+                    className={isDark ? ' options-container dark' : 'options-container'}>
                     {options && options?.map(option => {
                         return (
                             <div
                                 onClick={() => { setLocation(option) }}
-                                className= {isDark ? 'dark location-option' : 'light location-option'}
+                                className={isDark ? 'dark location-option' : 'light location-option'}
                                 key={option.Key}>
                                 <span>{option.LocalizedName}</span>
                             </div>)

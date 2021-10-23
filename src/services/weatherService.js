@@ -1,8 +1,8 @@
 import axios from "axios";
 import { storageService } from "./storageService";
 
-const KEY = 'tBiJIiEX3QUH4wlV1eGDeGPi6evLzjSs'
-// const KEY = 'lw2vS1eWEGkFpck5I1zbGb6qsEWdKE2y'
+// const KEY = 'tBiJIiEX3QUH4wlV1eGDeGPi6evLzjSs'
+const KEY = 'lw2vS1eWEGkFpck5I1zbGb6qsEWdKE2y'
 
 
 async function getFiveDaysWeather(key) {
@@ -32,13 +32,12 @@ async function getAutocomplete(q) {
     }
 }
 async function getWeatherByHour(locationKey) {
-    console.log("🚀 ~ file: weatherService.js ~ line 35 ~ getWeatherByHour ~ getWeatherByHour", locationKey)
     try {
         const resp = await axios.get(`http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${locationKey}?apikey=${KEY}`)
         return resp.data
     }
     catch (err) {
-        throw err
+        throw console.error(err,'err get Weather By Hour');
     }
 }
 

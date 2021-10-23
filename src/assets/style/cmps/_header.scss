@@ -10,6 +10,9 @@
         height: 40px;
         width: 40px;
     }
+    @include for-mobile-layout {
+        padding: 10px 10px;
+    }
 }
 .left-nav {
     display: block;

@@ -33,6 +33,7 @@
   @include for-normal-layout {
     grid-template-columns: 
     minmax(rem(16px), 1fr)
+          // minmax(auto, $normal-breakpoint)
           minmax(auto, $narrow-breakpoint)
           minmax(rem(16px), 1fr);
   }

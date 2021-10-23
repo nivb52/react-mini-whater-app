@@ -1,63 +1,73 @@
-import { Chart } from 'chart.js';
 import { useEffect, useState } from "react";
 import { Line } from 'react-chartjs-2';
 import { useDispatch, useSelector } from 'react-redux';
 import { locationService } from '../services/locationService';
 import { weatherService } from '../services/weatherService';
 
-
-
-
 export const WeatherByHour = () => {
 
     const [weatherByHour, setWeatherByHour] = useState([])
     const [chartData, setChartData] = useState(null)
     const [chartLabel, setChartLabel] = useState(null)
-    const { currentLocation, isDark, isCelsius } = useSelector(state => state.weatherModule)
-    const dispatch = useDispatch()
+    const { currentLocation, isDark, isCelsius, isMobile } = useSelector(state => state.weatherModule)
 
     const data = {
         labels: chartLabel,
         datasets: [
             {
-                // label: '# of Votes',
+                label: '',
                 data: chartData,
                 fill: true,
                 backgroundColor: isDark ? '#3c341b' : '#fff',
-                // backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgba(255, 99, 132, 0.2)',
             },
         ],
     };
 
     const options = {
+        responsive: true,
+        customTooltips: false,
+        scaleShowLabels: false,
+
+
+        elements: {
+            point: {
+                radius: 0
+            }
+        },
+        title: {
+            display: false
+        },
+        plugins: {
+            legend: {
+                labels: {
+                    boxWidth: 0
+                }
+            }
+        },
         scales: {
             y: {
                 grid: {
-                    display: false
+                    display: false,
+                    drawBorder: false
                 }
                 ,
                 beginAtZero: false
             },
             x: {
                 grid: {
-                    display: false
+                    display: false,
+                    drawBorder: false
                 }
             }
         }
     };
-
-
-
-
-
 
     useEffect(() => {
         setWeatherByHour(locationService.getDefualtWeatherByHour())
     }, [])
 
     useEffect(() => {
-        console.log(weatherByHour);
         onSetData()
         onSetLabel()
     }, [weatherByHour])
@@ -85,7 +95,6 @@ export const WeatherByHour = () => {
             if (isCelsius) return weatherService.fToC(hour.Temperature.Value)
             else return hour.Temperature.Value
         })
-        console.log("🚀 ~ file: WeatherByHour.jsx ~ line 84 ~ onSetData ~ data", data)
         setChartData(data)
     }
     const onSetLabel = () => {
@@ -100,7 +109,7 @@ export const WeatherByHour = () => {
             {chartLabel && chartData &&
                 <Line
                     height={50}
-
+                    // width={isMobile ? 100 : ''}
                     data={data}
                     options={options} />}
 

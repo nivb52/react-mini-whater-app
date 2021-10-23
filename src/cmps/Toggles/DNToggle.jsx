@@ -65,7 +65,9 @@ export default function DNToggle() {
       <FormControlLabel
       onChange={handleChange}
         control={<MaterialUISwitch 
-          sx={{ m: 1 }}  />}
+          sx={{ m: 0
+          ,mr:-3
+          }}  />}
         label=""
       />
     </div>

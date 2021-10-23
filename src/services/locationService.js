@@ -4,18 +4,177 @@ const LOCATIONS_KEY = 'favoriteLocations'
 const CURRENT_LOCATION_KEY = 'currentLocation'
 
 let defualtLocation = {
-    "Version": 1,
-    "Key": "215854",
-    "Type": "Location",
-    "Rank": 31,
-    "LocalizedName": "Tel Aviv",
-    "Country": {
-        "ID": "IL",
-        "LocalizedName": "Israel"
-    },
-    "AdministrativeArea": {
-        "ID": "TA",
-        "LocalizedName": "Tel Aviv"
+    "currWeather": [
+        {
+            "Date": "2021-10-23T07:00:00+03:00",
+            "EpochDate": 1634961600,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 66,
+                    "Unit": "F",
+                    "UnitType": 18
+                },
+                "Maximum": {
+                    "Value": 79,
+                    "Unit": "F",
+                    "UnitType": 18
+                }
+            },
+            "Day": {
+                "Icon": 2,
+                "IconPhrase": "Mostly sunny",
+                "HasPrecipitation": false
+            },
+            "Night": {
+                "Icon": 33,
+                "IconPhrase": "Clear",
+                "HasPrecipitation": false
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=1&lang=en-us",
+            "Link": "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=1&lang=en-us"
+        },
+        {
+            "Date": "2021-10-24T07:00:00+03:00",
+            "EpochDate": 1635048000,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 66,
+                    "Unit": "F",
+                    "UnitType": 18
+                },
+                "Maximum": {
+                    "Value": 78,
+                    "Unit": "F",
+                    "UnitType": 18
+                }
+            },
+            "Day": {
+                "Icon": 2,
+                "IconPhrase": "Mostly sunny",
+                "HasPrecipitation": false
+            },
+            "Night": {
+                "Icon": 33,
+                "IconPhrase": "Clear",
+                "HasPrecipitation": false
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=2&lang=en-us",
+            "Link": "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=2&lang=en-us"
+        },
+        {
+            "Date": "2021-10-25T07:00:00+03:00",
+            "EpochDate": 1635134400,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 67,
+                    "Unit": "F",
+                    "UnitType": 18
+                },
+                "Maximum": {
+                    "Value": 78,
+                    "Unit": "F",
+                    "UnitType": 18
+                }
+            },
+            "Day": {
+                "Icon": 1,
+                "IconPhrase": "Sunny",
+                "HasPrecipitation": false
+            },
+            "Night": {
+                "Icon": 34,
+                "IconPhrase": "Mostly clear",
+                "HasPrecipitation": false
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=3&lang=en-us",
+            "Link": "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=3&lang=en-us"
+        },
+        {
+            "Date": "2021-10-26T07:00:00+03:00",
+            "EpochDate": 1635220800,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 67,
+                    "Unit": "F",
+                    "UnitType": 18
+                },
+                "Maximum": {
+                    "Value": 78,
+                    "Unit": "F",
+                    "UnitType": 18
+                }
+            },
+            "Day": {
+                "Icon": 1,
+                "IconPhrase": "Sunny",
+                "HasPrecipitation": false
+            },
+            "Night": {
+                "Icon": 33,
+                "IconPhrase": "Clear",
+                "HasPrecipitation": false
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=4&lang=en-us",
+            "Link": "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=4&lang=en-us"
+        },
+        {
+            "Date": "2021-10-27T07:00:00+03:00",
+            "EpochDate": 1635307200,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 67,
+                    "Unit": "F",
+                    "UnitType": 18
+                },
+                "Maximum": {
+                    "Value": 80,
+                    "Unit": "F",
+                    "UnitType": 18
+                }
+            },
+            "Day": {
+                "Icon": 1,
+                "IconPhrase": "Sunny",
+                "HasPrecipitation": false
+            },
+            "Night": {
+                "Icon": 33,
+                "IconPhrase": "Clear",
+                "HasPrecipitation": false
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=5&lang=en-us",
+            "Link": "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=5&lang=en-us"
+        }
+    ],
+    "info": {
+        "Version": 1,
+        "Key": "215854",
+        "Type": "Location",
+        "Rank": 31,
+        "LocalizedName": "Tel Aviv",
+        "Country": {
+            "ID": "IL",
+            "LocalizedName": "Israel"
+        },
+        "AdministrativeArea": {
+            "ID": "TA",
+            "LocalizedName": "Tel Aviv"
+        }
     }
 }
 
@@ -215,7 +374,7 @@ let defualtWeatherByHour = [
 ]
 
 
-let gFavoriteLocations = _loadLocations()
+let gFavoriteLocations =[]// _loadLocations()
 
 const setCurrentLocation = (location) => {
     storageService.saveToStorage(CURRENT_LOCATION_KEY, location)
@@ -242,22 +401,21 @@ function query() {
 function remove(locationToRemove) {
     if (gFavoriteLocations.length === 0) return
     const idx = gFavoriteLocations.findIndex(location => location.info.Key === locationToRemove.Key)
-    console.log("🚀 ~ file: locationService.js ~ line 45 ~ remove ~ idx", idx)
     gFavoriteLocations.splice(idx, 1)
-    console.log("🚀 ~ file: locationService.js ~ line 46 ~ remove ~ gFavoriteLocations", gFavoriteLocations)
     storageService.saveToStorage(LOCATIONS_KEY, gFavoriteLocations)
     return Promise.resolve()
 }
 
 const save = (locationToSave) => {
-    const currWeather = storageService.loadFromStorage('currentWeather')
-    const locationObj = {}
-    locationObj.info = locationToSave
-    locationObj.currWeather = currWeather[0]
+    // const currWeather = storageService.loadFromStorage('currentWeather')
+    // const locationObj = {}
+    // locationObj.info = locationToSave
+    // locationObj.currWeather = currWeather
+    // gFavoriteLocations.push(locationObj) // Save location
 
-    gFavoriteLocations.push(locationObj) // Save location
+    gFavoriteLocations.push(locationToSave) // Save location
     storageService.saveToStorage(LOCATIONS_KEY, gFavoriteLocations)
-    return Promise.resolve(locationObj);
+    return Promise.resolve(locationToSave);
 }
 
 

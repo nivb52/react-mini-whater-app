@@ -2,13 +2,16 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ReactComponent as Menu } from '../assets/svg/menu_black_24dp.svg'
 import { toggleDark } from '../actions/WeatherActions'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import DNToggle from './Toggles/DNToggle'
+import { SearchBar } from './SearchBar'
 
 
 export function AppHeader() {
-    const [isMobile, setIsMobile] = useState(false)
+    const [mobile, setIsMobile] = useState(false)
     const dispatch = useDispatch()
+    const {  isMobile } = useSelector(state => state.weatherModule)
+
     const changeMobile = () => {
         setIsMobile(prev => prev = !prev)
     }
@@ -22,16 +25,18 @@ export function AppHeader() {
     return (
         <header className="app-header">
             <nav className="main-nav ">
-                {!isMobile && <div className="left-nav">
+                {!mobile && <div className="left-nav">
                     <Link to='/'><span>Home</span></Link>
                     <Link to='/favorites'><span>Favorites</span></Link>
                 </div>}
-                {isMobile && <div onClick={changeMobile} className="mobile-nav">
+                {mobile && <div onClick={changeMobile} className="mobile-nav">
                     <Link to='/'><span>Home</span></Link>
                     <Link to='/favorites'><span>Favorites</span></Link>
                 </div>}
-                {isMobile && <div className="background-menu" onClick={changeMobile}></div>}
-                <Menu onClick={changeMobile} className="menu-btn" />
+                {mobile && <div className="background-menu" onClick={changeMobile}></div>}
+
+                <Menu onClick={changeMobile} className="menu-btn fill-dark" />
+                {isMobile &&<SearchBar />}
                 <div className="right-nav flex">
                     <DNToggle />
                     <div className="cf-container flex column">

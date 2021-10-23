@@ -10,10 +10,7 @@ export const Favorites = () => {
     const { favoriteLocations, isDark } = useSelector(state => state.weatherModule)
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(queryLocations())
-    }, [])
-
+  
     useEffect(() => {
         dispatch(queryLocations())
     }, [favoriteLocations])
