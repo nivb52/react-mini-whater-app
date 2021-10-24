@@ -9,7 +9,7 @@ const KEY = 'tBiJIiEX3QUH4wlV1eGDeGPi6evLzjSs'
 
 async function getFiveDaysWeather(key) {
     try {
-        const resp = await axios.get(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=${KEY}`)
+        const resp = await axios.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=${KEY}`)
         return resp.data.DailyForecasts
     }
     catch (err) {
@@ -18,7 +18,7 @@ async function getFiveDaysWeather(key) {
 }
 async function getAutocomplete(q) {
     try {
-        const resp = await axios.get(`http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${KEY}&q=${q}`)
+        const resp = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${KEY}&q=${q}`)
         return resp.data
     }
     catch (err) {
@@ -27,7 +27,7 @@ async function getAutocomplete(q) {
 }
 async function getWeatherByHour(locationKey) {
     try {
-        const resp = await axios.get(`http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${locationKey}?apikey=${KEY}`)
+        const resp = await axios.get(`https://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${locationKey}?apikey=${KEY}`)
         return resp.data
     }
     catch (err) {
@@ -37,7 +37,7 @@ async function getWeatherByHour(locationKey) {
 
 async function getGeolocation(position) {
     try {
-        const resp = await axios.get(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${KEY}&q=${position.lat}%2C${position.lon}`,
+        const resp = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${KEY}&q=${position.lat}%2C${position.lon}`,
             {
                 headers: {
                     "Access-Control-Allow-Origin": "*",
