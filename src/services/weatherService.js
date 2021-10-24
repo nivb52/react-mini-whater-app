@@ -6,6 +6,7 @@ const KEY = 'tBiJIiEX3QUH4wlV1eGDeGPi6evLzjSs'
 // const KEY = ''
 
 
+
 async function getFiveDaysWeather(key) {
     try {
         const resp = await axios.get(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=${KEY}`)
