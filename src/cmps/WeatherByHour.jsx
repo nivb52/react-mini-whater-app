@@ -9,7 +9,7 @@ export const WeatherByHour = () => {
     const [weatherByHour, setWeatherByHour] = useState([])
     const [chartData, setChartData] = useState(null)
     const [chartLabel, setChartLabel] = useState(null)
-    const { isDark, isCelsius } = useSelector(state => state.weatherModule)
+    const { isDark, isCelsius, currentLocation } = useSelector(state => state.weatherModule)
 
     const data = {
         labels: chartLabel,
@@ -65,6 +65,15 @@ export const WeatherByHour = () => {
         setWeatherByHour(locationService.getDefualtWeatherByHour())
     }, [])
 
+    useEffect( () => {
+        (async () => { 
+            if (currentLocation) {
+                const resp = await weatherService.getWeatherByHour(currentLocation)
+                setWeatherByHour(resp)
+            }
+        })()
+    }, [currentLocation])
+
     useEffect(() => {
         onSetData()
         onSetLabel()
@@ -74,10 +83,9 @@ export const WeatherByHour = () => {
         onSetData()
     }, [isCelsius])
 
-    const getCurrentHour = (time) => {
-        var date = new Date(0)
-        date.setUTCSeconds(time)
-        return date.getHours()
+    const getCurrentHour = (time, idx) => {
+        var dateNow = new Date().getHours()
+        return (dateNow + idx) % 24
     }
 
     const onSetData = () => {
@@ -88,8 +96,8 @@ export const WeatherByHour = () => {
         setChartData(data)
     }
     const onSetLabel = () => {
-        let data = weatherByHour.map(hour => {
-            return getCurrentHour(hour.EpochDateTime)
+        let data = weatherByHour.map((hour, idx) => {
+            return (`${getCurrentHour(hour.EpochDateTime, idx)}:00`)
         })
         setChartLabel(data)
     }
@@ -101,7 +109,6 @@ export const WeatherByHour = () => {
                     height={50}
                     data={data}
                     options={options} />}
-
         </section>
     )
 }

@@ -1,14 +1,5 @@
 .location-list {
     justify-content: center;
-    .no-favorites {
-        display: flex;
-        justify-content: center;
-        margin-top: -300px;
-        align-items: center;
-        h1 {
-            font-size: 40px;
-        }
-    }
 
     @include for-mobile-layout {
         display: flex;
@@ -21,5 +12,26 @@
     }
     @include for-normal-layout {
         flex-wrap: wrap;
+    }
+}
+
+.empty-favorites {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 50px;
+    img {
+        width: 200px;
+    }
+
+    align-items: center;
+    h1 {
+        font-size: 40px;
+    }
+
+    @include for-mobile-layout {
+        h1 {
+            font-size: 26px;
+        }
     }
 }

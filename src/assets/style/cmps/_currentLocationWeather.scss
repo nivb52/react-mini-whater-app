@@ -78,6 +78,13 @@
             height: 60px;
         }
     }
+    @include for-normal-layout {
+        .current-info {
+            p:first-child {
+                font-size: 32px;
+            }
+        }
+    }
 
     @include for-mobile-layout {
         .right-container {

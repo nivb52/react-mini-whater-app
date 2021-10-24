@@ -5,8 +5,6 @@ import Switch from '@mui/material/Switch';
 import { toggleDark } from '../../actions/WeatherActions'
 import { useDispatch } from 'react-redux';
 
-
-
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
   height: 34,

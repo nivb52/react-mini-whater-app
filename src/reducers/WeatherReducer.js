@@ -1,7 +1,6 @@
 
 const initialState = {
     currentLocation: null,
-    filterBy: null,
     favoriteLocations: [],
     isDark: false,
     isCelsius: false,
@@ -30,11 +29,6 @@ export default function WeatherReducer(state = initialState, action) {
             return {
                 ...state,
                 isHome: action.status
-            }
-        case 'SET_FILTER':
-            return {
-                ...state,
-                filterBy: action.filterBy
             }
         case 'SET_LOCATION':
             return {

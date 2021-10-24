@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react'
 import { ReactComponent as Heart } from '../assets/svg/heart.svg'
 import { ReactComponent as FilledHeart } from '../assets/svg/filled-heart.svg'
@@ -71,8 +70,8 @@ export const CurrentLocationWeather = () => {
                 </div>
 
                 <div className="heart-container pointer">
-                    {!isLiking && <Heart onClick={() => { onSetIsLiking(true) }} className="heart " />}
-                    {isLiking && <FilledHeart onClick={() => { onSetIsLiking(false) }} className="heart " />}
+                    {!isLiking && <Heart onClick={() => { onSetIsLiking(true) }} className="heart" />}
+                    {isLiking && <FilledHeart onClick={() => { onSetIsLiking(false) }} className="heart" />}
                 </div>
             </div>
         </section>

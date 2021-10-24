@@ -14,7 +14,6 @@ export default function CFToggle() {
     return (
         <div>
             <Switch
-                // checked={checked}
                 onChange={handleChange}
                 {...label} />
         </div>

@@ -34,7 +34,7 @@ export const WeatherPreview = ({ dailyForecast }) => {
                     backgroundColor: setBackground()
                 }}  >
                 <div className="card-container flex column align-center">
-                    <p >{getCurrentDate(dailyForecast?.EpochDate).slice(0, 3)}</p>
+                    <p className={isDark ? "dark-text title" : "title"}>{getCurrentDate(dailyForecast?.EpochDate).slice(0, 3)}</p>
                     {!isDark && <img src={`https://www.accuweather.com/images/weathericons/${setIcon(dailyForecast.Day.Icon)}.svg`} alt="" />}
                     {isDark && <img src={`https://www.accuweather.com/images/weathericons/${setIcon(dailyForecast.Night.Icon)}.svg`} alt="" />}
                     <div className="tempature-container flex">

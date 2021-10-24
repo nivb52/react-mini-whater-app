@@ -35,6 +35,7 @@ export function queryLocations() {
         dispatch(_queryLocations(locations))
     }
 }
+
 export function removeFromFavorites(location) {
     locationService.remove(location)
     return (dispatch) => dispatch(_removeFromFavorites(location.Key))

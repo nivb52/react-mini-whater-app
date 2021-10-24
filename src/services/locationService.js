@@ -223,8 +223,6 @@ const setCurrentLocation = (location) => {
 }
 
 const getDefaultLocation = async () => {
-    // let location=await _loadCurrentLocation()
-    // return Promise.resolve( location)
     return { ...defualtLocation }
 }
 
@@ -239,10 +237,7 @@ const getById = (key) => {
 
 function query() {
     const locations = storageService.loadFromStorage(LOCATIONS_KEY)
-
-    // return Promise.resolve(gFavoriteLocations);
     return Promise.resolve(locations);
-
 }
 
 function remove(locationToRemove) {
@@ -255,12 +250,6 @@ function remove(locationToRemove) {
 }
 
 const save = (locationToSave) => {
-    // const currWeather = storageService.loadFromStorage('currentWeather')
-    // const locationObj = {}
-    // locationObj.info = locationToSave
-    // locationObj.currWeather = currWeather
-    // gFavoriteLocations.push(locationObj) // Save location
-
     gFavoriteLocations.push(locationToSave) // Save location
     storageService.saveToStorage(LOCATIONS_KEY, gFavoriteLocations)
     return Promise.resolve(locationToSave);
@@ -271,13 +260,6 @@ function _loadLocations() {
     if (!locations || !locations.length) locations = []
     storageService.saveToStorage(LOCATIONS_KEY, locations)
     return locations
-}
-
-async function _loadCurrentLocation() {
-    let location = await storageService.loadFromStorage(CURRENT_LOCATION_KEY)
-    if (!location?.info || !location) location = defualtLocation
-    storageService.saveToStorage(CURRENT_LOCATION_KEY, location)
-    return location.info
 }
 
 export const locationService = {

@@ -35,7 +35,6 @@ export const LocationPreview = ({ location }) => {
         history.push("/");
     }
 
-
     return (
         <Box
             className="location-preview pointer"
@@ -49,7 +48,7 @@ export const LocationPreview = ({ location }) => {
                 }}
                 className="location-card "  >
                 <div className="card-container flex column align-center">
-                    <p className={isDark?"dark-text title": "title"}>{location.info.LocalizedName}</p>
+                    <p className={isDark ? "dark-text title" : "title"}>{location.info.LocalizedName}</p>
                     <img src={`https://www.accuweather.com/images/weathericons/${setIcon(location?.currWeather[0]?.Day?.Icon)}.svg`} alt="" />
                     <div className="tempature-container flex">
                         <div className="tempature max">
