@@ -1,17 +1,12 @@
 .location-preview {
-    margin-top: 20px;
+    margin-top: 10px;
     display: flex;
     margin-left: 10px;
+    margin-bottom: 10px;
 
-    &:first-child {
-        margin-left: 0;
-    }
     p {
         padding: 10px;
         font-size: 1.2rem;
-    }
-    .title {
-        font-size: 1.5rem;
     }
 
     .location-card {
@@ -42,16 +37,13 @@
         img {
             max-width: 300px;
         }
-        .title {
-            font-size: 1.5rem;
-        }
     }
     @include for-narrow-layout {
         img {
             min-width: 135px;
         }
         .title {
-            font-size: 1rem;
+            font-size: 1.5rem;
         }
     }
     @include for-mobile-layout {

@@ -43,7 +43,10 @@
 .dark {
   background-color: #18191b;
   color: #959699;
-
+  &-text {
+    color: #ffffff;
+    font-weight: bold;
+  }
   .bold {
     color: rgb(255, 255, 255);
   }

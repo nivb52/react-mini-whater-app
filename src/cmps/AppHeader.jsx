@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux'
 import DNToggle from './Toggles/DNToggle'
 import { SearchBar } from './SearchBar'
 
-
 export function AppHeader() {
     const [mobile, setIsMobile] = useState(false)
     const { isMobile,isHome } = useSelector(state => state.weatherModule)

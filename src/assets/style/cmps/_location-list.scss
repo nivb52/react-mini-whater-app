@@ -20,6 +20,6 @@
         flex-wrap: wrap;
     }
     @include for-normal-layout {
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
     }
 }

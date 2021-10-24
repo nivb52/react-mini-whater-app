@@ -247,7 +247,8 @@ function query() {
 
 function remove(locationToRemove) {
     if (gFavoriteLocations.length === 0) return
-    const idx = gFavoriteLocations.findIndex(location => location.info.Key === locationToRemove.info.Key)
+    const key = (locationToRemove.Key) ? locationToRemove.Key : locationToRemove.info.Key
+    const idx = gFavoriteLocations.findIndex(location => location.info.Key === key)
     gFavoriteLocations.splice(idx, 1)
     storageService.saveToStorage(LOCATIONS_KEY, gFavoriteLocations)
     return Promise.resolve()

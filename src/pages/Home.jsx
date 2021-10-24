@@ -23,7 +23,6 @@ export const Home = () => {
         if (!location.isReady) return
         (async () => {
             // const resp = await weatherService.getGeolocation(location.coordinates)
-            // console.log("🚀 ~ file: Home.jsx ~ line 22 ~ resp", resp)
             // dispatch(setCurrentLocation)(resp)
         })()
     }, [location])
