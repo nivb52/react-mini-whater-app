@@ -68,12 +68,19 @@
     a {
         color: white;
         font-size: 2rem;
+        padding: 10px;
         &:hover {
             background-color: gray;
         }
         &:first-of-type {
-            margin-top: 50px;
+            margin-top: 10px;
         }
+    }
+    img {
+        margin-top: 20px;
+        align-self: center;
+        height: 100px;
+        width: 100px;
     }
 }
 

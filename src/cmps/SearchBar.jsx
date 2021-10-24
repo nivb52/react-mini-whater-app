@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { weatherService } from '../services/weatherService'
 import { debounce } from 'lodash'
 import { storageService } from '../services/storageService';
@@ -17,31 +17,30 @@ export const SearchBar = () => {
     const [options, setOptions] = useState([])
     const dispatch = useDispatch()
     const { isDark } = useSelector(state => state.weatherModule)
-
+    const inputRef = useRef()
 
 
     useEffect(() => {
-        
-        // const currLocation = locationService.getDefaultLocation()
-        // setLocation(currLocation)
+        (async () => {
+            const defaultLocation = await locationService.getDefaultLocation()
+            setLocation(defaultLocation)
+        })()
 
-        setOptions(storageService.loadFromStorage('locationOptions'))
+        // setOptions(storageService.loadFromStorage('locationOptions'))
 
     }, [])
 
     useEffect(() => {
         setDisplay(false)
-        // dispatch(setCurrentLocation(location))
+        dispatch(setCurrentLocation(location))
     }, [location])
 
-
-
     useEffect(() => {
-        // (async () => {
-        //     const res = await weatherService.getAutocomplete(search)
-        //     setOptions(res)
-        //     storageService.saveToStorage('locationOptions',res)
-        // })();
+        (async () => { //API
+            const res = await weatherService.getAutocomplete(search)
+            setOptions(res)
+            storageService.saveToStorage('locationOptions', res)
+        })();
     }, [search])
 
     const handleChange = (e) => {
@@ -58,13 +57,14 @@ export const SearchBar = () => {
         <section className="search-container">
             <div className="searchbar flex">
                 <input
+                    ref={inputRef}
                     onChange={handleChange}
                     type="text"
                     placeholder="Search City"
-                    className={isDark?"dark":""}
-                    />
-                    
-                    <Loupe className={isDark?"loupe fill-dark":"loupe"} />
+                    className={isDark ? "dark" : ""}
+                />
+
+                <Loupe className={isDark ? "loupe fill-dark" : "loupe"} />
             </div>
             {display && //REVERT
                 <div
@@ -72,7 +72,9 @@ export const SearchBar = () => {
                     {options && options?.map(option => {
                         return (
                             <div
-                                onClick={() => { setLocation(option) }}
+                                onClick={() => { 
+                                     inputRef.current.value = option.LocalizedName
+                                    setLocation(option) }}
                                 className={isDark ? 'dark location-option' : 'light location-option'}
                                 key={option.Key}>
                                 <span>{option.LocalizedName}</span>

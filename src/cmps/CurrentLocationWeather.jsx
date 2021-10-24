@@ -14,27 +14,16 @@ export const CurrentLocationWeather = () => {
     const [isLiking, setIsLiking] = useState(false)
     const { currentLocation, isCelsius, isDark, isMobile } = useSelector(state => state.weatherModule)
     const dispatch = useDispatch()
-    // const [weather, setWeather] = useState([])
 
     useEffect(() => {
-      dispatch(setCurrentLocation(storageService.loadFromStorage('currentLocation'))) //LOCAL
-    }, [])
-
-
-    useEffect(() => {
-        if(currentLocation){
-            // dispatch(setCurrentLocation(currentLocation)) // API
-        }
         isFavorite()
-
-
     }, [currentLocation])
 
     useEffect(() => {
         (async () => {
-            if(currentLocation){
-
+            if (currentLocation) {
                 const isLocationExist = await locationService.getById(currentLocation.info.Key)
+                console.log("🚀 ~ file: CurrentLocationWeather.jsx ~ line 37 ~ isLocationExist", isLocationExist)
                 if (isLocationExist === undefined) { // Is not favorite
                     if (isLiking) saveToFavorites(currentLocation)
                 }
@@ -66,8 +55,8 @@ export const CurrentLocationWeather = () => {
             <div className="info-container flex">
                 {!isDark && currentLocation && <img src={`https://www.accuweather.com/images/weathericons/${weatherService.setIcon(currentLocation?.currWeather[0]?.Day?.Icon)}.svg`} alt="" />}
                 {isDark && currentLocation && <img src={`https://www.accuweather.com/images/weathericons/${weatherService.setIcon(currentLocation?.currWeather[0]?.Night?.Icon)}.svg`} alt="" />}
-                {isCelsius && <p>{weatherService.fToC(currentLocation?.currWeather[0]?.Temperature?.Minimum.Value)}</p>}
-                {!isCelsius && <p>{currentLocation?.currWeather[0]?.Temperature?.Minimum.Value}</p>}
+                {isCelsius && <p>{weatherService.fToC(currentLocation?.currWeather[0]?.Temperature?.Minimum?.Value)}</p>}
+                {!isCelsius && <p>{currentLocation?.currWeather[0]?.Temperature?.Minimum?.Value}</p>}
                 <div className="unit-selector pointer">
                     <span className={isCelsius ? 'bold' : ''} onClick={() => { dispatch(toggleCelsius(true)) }} >°C</span> |
                     <span className={!isCelsius ? 'bold' : ''} onClick={() => { dispatch(toggleCelsius(false)) }}> °F</span>

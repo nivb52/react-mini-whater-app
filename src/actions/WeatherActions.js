@@ -15,18 +15,16 @@ const _removeFromFavorites = (locationKey) => ({ type: 'REMOVE_LOCATION', locati
 
 // THUNK
 export function setCurrentLocation(currentLocation) {
+    console.log("🚀 ~ file: WeatherActions.js ~ line 18 ~ setCurrentLocation ~ currentLocation", currentLocation)
     return async (dispatch) => {
-        if (!currentLocation.info) {
+        if (currentLocation) {
             const currentLocationObject = {}
             const locationWeather = await weatherService.getFiveDaysWeather(currentLocation.Key)
             currentLocationObject.currWeather = locationWeather
-            // currentLocationObject.currWeather=locationWeather
             currentLocationObject.info = currentLocation
-            // currentLocationObject.info=location
             locationService.setCurrentLocation(currentLocationObject)
             dispatch(_setCurrentLocation(currentLocationObject))
         }
-        else dispatch(_setCurrentLocation(currentLocation))
     }
 
 }

@@ -4,19 +4,10 @@ import { LocationPreview } from "./LocationPreview";
 export const LocationList = ({ locations }) => {
     useEffect(() => {
     }, [locations])
-    // useEffect(() => {
-    //     const getFiveDaysWeather = async () => {
-    //         // const resp = await weatherService.getFiveDaysWeather()
-    //         // storageService.saveToStorage('currentWeather', resp)
-    //         // setWeather(resp)
-    //         setWeather(storageService.loadFromStorage('currentWeather'))
-    //     }
-    //     getFiveDaysWeather()
-    // }, [])
-
-
+   
     return (
         <section className="location-list flex">
+            <div className="list-header">Favorites</div>
             { locations?.map((location) => { return (<LocationPreview location={location} key={location.info.Key} />) })}
             { (locations?.length === 0) &&
                 <div className="no-favorites">

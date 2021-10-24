@@ -10,11 +10,10 @@ export const Favorites = () => {
     const { favoriteLocations, isDark } = useSelector(state => state.weatherModule)
     const dispatch = useDispatch()
 
-  
     useEffect(() => {
         dispatch(queryLocations())
-    }, [favoriteLocations])
-
+    }, [])
+    
     return (
         <section className={isDark ? 'dark main-container' : 'main-container'}>
             <div className="home-container flex column">

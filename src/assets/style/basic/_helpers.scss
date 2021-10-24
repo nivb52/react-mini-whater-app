@@ -43,17 +43,21 @@
 .dark {
   background-color: #18191b;
   color: #959699;
-  animation: background-dark 0.7s;
+  // animation: background-dark 0.7s;
   
   .bold {
     color: rgb(255, 255, 255);
   }
 }
 
+.underline{
+  border-bottom: #fff 2px solid;
+}
+
 .light {
   background-color: #fff;
   color: #4c5055;
-  animation: background-light 0.7s;
+  // animation: background-light 0.7s;
 }
 
 @keyframes background-dark {

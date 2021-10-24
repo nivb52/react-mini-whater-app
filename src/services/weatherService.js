@@ -1,25 +1,18 @@
 import axios from "axios";
 import { storageService } from "./storageService";
 
-// const KEY = 'tBiJIiEX3QUH4wlV1eGDeGPi6evLzjSs'
-const KEY = 'lw2vS1eWEGkFpck5I1zbGb6qsEWdKE2y'
+const KEY = 'tBiJIiEX3QUH4wlV1eGDeGPi6evLzjSs'
+// const KEY = '6TvuqkQbGVyr8Jxem9hLBmHQkVhCj23y'
+// const KEY = ''
 
 
 async function getFiveDaysWeather(key) {
-    if (key) {
+    try {
         const resp = await axios.get(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=${KEY}`)
         return resp.data.DailyForecasts
     }
-    else {
-
-        try {
-            const currKey = _getCurrentLocationKey()
-            const resp = await axios.get(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${currKey}?apikey=${KEY}`)
-            return resp.data.DailyForecasts
-        }
-        catch (err) {
-            throw err
-        }
+    catch (err) {
+        throw err
     }
 }
 async function getAutocomplete(q) {
@@ -37,7 +30,7 @@ async function getWeatherByHour(locationKey) {
         return resp.data
     }
     catch (err) {
-        throw console.error(err,'err get Weather By Hour');
+        throw console.error(err, 'err get Weather By Hour');
     }
 }
 
@@ -59,7 +52,7 @@ async function getGeolocation(position) {
 
 const _getCurrentLocationKey = () => {
     const currLocationKey = storageService.loadFromStorage('currentLocation')
-    return currLocationKey.Key
+    return currLocationKey.info.Key
 }
 
 const fToC = (tempature) => {

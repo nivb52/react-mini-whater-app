@@ -2,7 +2,7 @@ import React from 'react'
 import { Box, Card } from "@material-ui/core";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { removeFromFavorites, setCurrentLocation } from '../../actions/WeatherActions'
+import { queryLocations,removeFromFavorites, setCurrentLocation } from '../../actions/WeatherActions'
 import { weatherService } from '../../services/weatherService';
 import { locationService } from '../../services/locationService';
 import { ReactComponent as Trash } from '../../assets/svg/trash.svg'
@@ -19,12 +19,12 @@ export const LocationPreview = ({ location }) => {
     }
 
     const onRemove = async (ev) => {
-        console.log('onRemove');
         ev.stopPropagation()
         const isLocationExist = await locationService.getById(location.info.Key)
         if (isLocationExist !== undefined) { // Is favorite
             dispatch(removeFromFavorites(location.info))
         }
+        dispatch(queryLocations())
     }
 
     const { fToC, setIcon } = weatherService
