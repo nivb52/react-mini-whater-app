@@ -23,7 +23,6 @@ export const CurrentLocationWeather = () => {
         (async () => {
             if (currentLocation) {
                 const isLocationExist = await locationService.getById(currentLocation.info.Key)
-                console.log("🚀 ~ file: CurrentLocationWeather.jsx ~ line 37 ~ isLocationExist", isLocationExist)
                 if (isLocationExist === undefined) { // Is not favorite
                     if (isLiking) saveToFavorites(currentLocation)
                 }
@@ -51,7 +50,7 @@ export const CurrentLocationWeather = () => {
     }
 
     return (
-        <section className="current-location-container flex">
+        <section className="current-location-container flex select">
             <div className="info-container flex">
                 {!isDark && currentLocation && <img src={`https://www.accuweather.com/images/weathericons/${weatherService.setIcon(currentLocation?.currWeather[0]?.Day?.Icon)}.svg`} alt="" />}
                 {isDark && currentLocation && <img src={`https://www.accuweather.com/images/weathericons/${weatherService.setIcon(currentLocation?.currWeather[0]?.Night?.Icon)}.svg`} alt="" />}

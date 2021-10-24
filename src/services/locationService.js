@@ -1143,7 +1143,6 @@ function _loadLocations() {
     let location =await storageService.loadFromStorage(CURRENT_LOCATION_KEY)
     if (!location?.info || !location) location = defualtLocation
     storageService.saveToStorage(CURRENT_LOCATION_KEY, location)
-    console.log("🚀 ~ file: locationService.js ~ line 1143 ~ _loadCurrentLocation ~ location", location)
     return location.info
 }
 

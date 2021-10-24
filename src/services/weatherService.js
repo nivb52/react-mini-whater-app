@@ -5,8 +5,6 @@ const KEY = 'tBiJIiEX3QUH4wlV1eGDeGPi6evLzjSs'
 // const KEY = '6TvuqkQbGVyr8Jxem9hLBmHQkVhCj23y'
 // const KEY = ''
 
-
-
 async function getFiveDaysWeather(key) {
     try {
         const resp = await axios.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=${KEY}`)
@@ -37,13 +35,15 @@ async function getWeatherByHour(locationKey) {
 
 async function getGeolocation(position) {
     try {
-        const resp = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${KEY}&q=${position.lat}%2C${position.lon}`,
-            {
-                headers: {
-                    "Access-Control-Allow-Origin": "*",
-                    "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT"
-                }
-            })
+        const resp = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${KEY}&q=${position.lat}%2C${position.lon}`
+        // ,
+            // {
+            //     headers: {
+            //         "Access-Control-Allow-Origin": "*",
+            //         "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT"
+            //     }
+            // }
+            )
         return resp.data
     }
     catch (err) {
@@ -59,7 +59,6 @@ const _getCurrentLocationKey = () => {
 const fToC = (tempature) => {
     return ((tempature - 32) * 5 / 9).toFixed(0);
 }
-
 
 const setIcon = (icon) => {
     return (icon < 10) ? `0${icon}` : icon

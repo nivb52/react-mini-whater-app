@@ -7,7 +7,6 @@ export const LocationList = ({ locations }) => {
    
     return (
         <section className="location-list flex">
-            <div className="list-header">Favorites</div>
             { locations?.map((location) => { return (<LocationPreview location={location} key={location.info.Key} />) })}
             { (locations?.length === 0) &&
                 <div className="no-favorites">

@@ -82,10 +82,17 @@
     @include for-mobile-layout {
         .right-container {
             justify-content: space-between;
+            align-items: center;
         }
 
         .current-info {
             font-size: 30px;
+            p{
+                &:last-child{
+                    font-size: 20px;
+                    margin-top: -10px;
+                }
+            }
         }
 
         .heart-container {

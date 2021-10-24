@@ -7,15 +7,14 @@ const _setFilter = (filterBy) => ({ type: 'SET_FILTER', filterBy });
 const _toggleDark = () => ({ type: 'TOGGLE_DARK' });
 const _toggleCelsius = (status) => ({ type: 'TOGGLE_CELSIUS', status });
 const _toggleIsMobile = (status) => ({ type: 'IS_MOBILE', status });
+const _toggleIsHome = (status) => ({ type: 'IS_HOME', status });
 const _setCurrentLocation = (location) => ({ type: 'SET_LOCATION', location });
 const _saveToFavorites = (location) => ({ type: 'ADD_LOCATION', location });
 const _queryLocations = (locations) => ({ type: 'SET_LOCATIONS', locations });
 const _removeFromFavorites = (locationKey) => ({ type: 'REMOVE_LOCATION', locationKey });
 
-
 // THUNK
 export function setCurrentLocation(currentLocation) {
-    console.log("🚀 ~ file: WeatherActions.js ~ line 18 ~ setCurrentLocation ~ currentLocation", currentLocation)
     return async (dispatch) => {
         if (currentLocation) {
             const currentLocationObject = {}
@@ -26,7 +25,6 @@ export function setCurrentLocation(currentLocation) {
             dispatch(_setCurrentLocation(currentLocationObject))
         }
     }
-
 }
 export function saveToFavorites(location) {
     locationService.save(location)
@@ -53,5 +51,8 @@ export function toggleCelsius(status) {
 }
 export function toggleIsMobile(status) {
     return (dispatch) => dispatch(_toggleIsMobile(status))
+}
+export function toggleIsHome(status) {
+    return (dispatch) => dispatch(_toggleIsHome(status))
 }
 

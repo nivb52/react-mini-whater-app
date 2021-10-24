@@ -6,6 +6,7 @@ const initialState = {
     isDark: false,
     isCelsius: false,
     isMobile: false,
+    isHome: false,
 }
 
 export default function WeatherReducer(state = initialState, action) {
@@ -24,6 +25,11 @@ export default function WeatherReducer(state = initialState, action) {
             return {
                 ...state,
                 isMobile: action.status
+            }
+        case 'IS_HOME':
+            return {
+                ...state,
+                isHome: action.status
             }
         case 'SET_FILTER':
             return {

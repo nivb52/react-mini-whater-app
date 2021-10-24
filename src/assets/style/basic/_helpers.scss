@@ -53,6 +53,9 @@
 .underline{
   border-bottom: #fff 2px solid;
 }
+.select{
+  user-select: none;
+}
 
 .light {
   background-color: #fff;

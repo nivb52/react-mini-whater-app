@@ -8,7 +8,7 @@ import { SearchBar } from './SearchBar'
 
 export function AppHeader() {
     const [mobile, setIsMobile] = useState(false)
-    const { isMobile } = useSelector(state => state.weatherModule)
+    const { isMobile,isHome } = useSelector(state => state.weatherModule)
 
     const changeMobile = () => {
         setIsMobile(prev => prev = !prev)
@@ -28,7 +28,7 @@ export function AppHeader() {
                 {mobile && <div className="background-menu" onClick={changeMobile}></div>}
 
                 <Menu onClick={changeMobile} className="menu-btn fill-dark" />
-                {isMobile && <SearchBar />}
+                {isHome&&isMobile && <SearchBar />}
                 <div className="right-nav flex">
                     <DNToggle />
                     <div className="cf-container flex column">

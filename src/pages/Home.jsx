@@ -5,20 +5,25 @@ import { SearchBar } from '../cmps/SearchBar'
 import { WeatherList } from '../cmps/WeatherList'
 import { useGeolocation } from '../services/customHooks'
 import { weatherService } from '../services/weatherService'
-import { setCurrentLocation } from '../actions/WeatherActions'
+import { toggleIsHome } from '../actions/WeatherActions'
 import { WeatherByHour } from '../cmps/WeatherByHour'
 import { toggleIsMobile } from '../actions/WeatherActions'
 
 
 export const Home = () => {
 
-    const { isDark } = useSelector(state => state.weatherModule)
+    const { isDark, isHome } = useSelector(state => state.weatherModule)
     // const location = useGeolocation()
     const dispatch = useDispatch()
 
     useEffect(() => {
         checkScreenWidth()
+        dispatch(toggleIsHome(true))
     }, [])
+
+    useEffect(() => {
+        console.log(isHome, 'isHome');
+    }, [isHome])
 
 
     // useEffect(() => {
@@ -31,9 +36,7 @@ export const Home = () => {
     //     })()
     // }, [location])
 
-    useEffect(() => {
-        console.log(isDark);
-    }, [isDark])
+
 
     const checkScreenWidth = () => {
         if (window.innerWidth > 485) {
