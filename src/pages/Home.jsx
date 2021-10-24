@@ -36,7 +36,7 @@ export const Home = () => {
     }, [isDark])
 
     const checkScreenWidth = () => {
-        if (window.innerWidth > 400) {
+        if (window.innerWidth > 485) {
             dispatch(toggleIsMobile(false))
         } else {
             dispatch(toggleIsMobile(true))
