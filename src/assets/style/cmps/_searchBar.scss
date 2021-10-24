@@ -27,6 +27,18 @@
             margin-left: 20px;
             margin-right: -50px;
         }
+        
+        @include for-mobile-layout {
+            .loupe {
+                margin-top: 15px;
+                width: 16px;
+                height: 16px;
+            }
+            input {
+                font-size: 16px;
+                margin-right: -70px;
+            }
+        }
         @include for-narrow-layout {
             .loupe {
                 display: none;
@@ -38,16 +50,14 @@
                 border: none;
             }
         }
-
-        @include for-mobile-layout {
+        @include for-normal-layout {
             .loupe {
-                margin-top: 15px;
-                width: 16px;
-                height: 16px;
+                display: block;
             }
             input {
-                font-size: 16px;
-                margin-right: -70px;
+                font-size: 24px;
+                margin-left: 20px;
+                margin-right: -50px;
             }
         }
     }

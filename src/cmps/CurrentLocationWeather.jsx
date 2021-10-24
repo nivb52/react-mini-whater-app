@@ -54,8 +54,10 @@ export const CurrentLocationWeather = () => {
             <div className="info-container flex">
                 {!isDark && currentLocation && <img src={`https://www.accuweather.com/images/weathericons/${weatherService.setIcon(currentLocation?.currWeather[0]?.Day?.Icon)}.svg`} alt="" />}
                 {isDark && currentLocation && <img src={`https://www.accuweather.com/images/weathericons/${weatherService.setIcon(currentLocation?.currWeather[0]?.Night?.Icon)}.svg`} alt="" />}
-                {isCelsius && <p>{weatherService.fToC(currentLocation?.currWeather[0]?.Temperature?.Minimum?.Value)}</p>}
-                {!isCelsius && <p>{currentLocation?.currWeather[0]?.Temperature?.Minimum?.Value}</p>}
+                {!isDark&&isCelsius && <p>{weatherService.fToC(currentLocation?.currWeather[0]?.Temperature?.Maximum?.Value)}</p>}
+                {!isDark&&!isCelsius && <p>{currentLocation?.currWeather[0]?.Temperature?.Maximum?.Value}</p>}
+                {isDark&&isCelsius && <p>{weatherService.fToC(currentLocation?.currWeather[0]?.Temperature?.Minimum?.Value)}</p>}
+                {isDark&&!isCelsius && <p>{currentLocation?.currWeather[0]?.Temperature?.Minimum?.Value}</p>}
                 <div className="unit-selector pointer">
                     <span className={isCelsius ? 'bold' : ''} onClick={() => { dispatch(toggleCelsius(true)) }} >°C</span> |
                     <span className={!isCelsius ? 'bold' : ''} onClick={() => { dispatch(toggleCelsius(false)) }}> °F</span>

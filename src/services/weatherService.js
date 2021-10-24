@@ -1,11 +1,14 @@
 import axios from "axios";
 import { storageService } from "./storageService";
 
-const KEY = 'tBiJIiEX3QUH4wlV1eGDeGPi6evLzjSs'
+// const KEY = 'tBiJIiEX3QUH4wlV1eGDeGPi6evLzjSs'
 // const KEY = '6TvuqkQbGVyr8Jxem9hLBmHQkVhCj23y'
+// const KEY = 'jFNMdQo1pBiVUtWdeO2EFPfHAX7wAJNX'
+const KEY = 'dKKw50ewg2TV00RDzBmObRNk3e1wybJo'
 // const KEY = ''
 
 async function getFiveDaysWeather(key) {
+    // if (key === undefined) return
     try {
         const resp = await axios.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=${KEY}`)
         return resp.data.DailyForecasts
@@ -36,14 +39,15 @@ async function getWeatherByHour(locationKey) {
 async function getGeolocation(position) {
     try {
         const resp = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${KEY}&q=${position.lat}%2C${position.lon}`
-        // ,
-            // {
-            //     headers: {
-            //         "Access-Control-Allow-Origin": "*",
-            //         "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT"
-            //     }
-            // }
-            )
+            ,
+            {
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT"
+                    
+                }
+            }
+        )
         return resp.data
     }
     catch (err) {

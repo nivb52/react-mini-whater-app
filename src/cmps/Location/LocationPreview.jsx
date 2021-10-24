@@ -31,9 +31,9 @@ export const LocationPreview = ({ location }) => {
 
 
     const onSetCurrentLocation = (ev) => {
+        ev.stopPropagation()
         ev.preventDefault()
-        console.log('onSetCurrentLocation');
-        dispatch(setCurrentLocation(location))
+        dispatch(setCurrentLocation(location.info))
         history.push("/");
     }
 

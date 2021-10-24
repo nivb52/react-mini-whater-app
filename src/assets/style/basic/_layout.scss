@@ -9,7 +9,8 @@
 .main-container {
   display: grid;
   grid-template-columns: 50px 1fr 50px;
-  height: 90vh;
+  min-height: 100vh;
+  height: 100%;
   
   @include for-mobile-layout {
     grid-template-columns: 10px 1fr 10px;

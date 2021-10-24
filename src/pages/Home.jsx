@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { CurrentLocationWeather } from '../cmps/CurrentLocationWeather'
-import { SearchBar } from '../cmps/SearchBar'
 import { WeatherList } from '../cmps/WeatherList'
 import { useGeolocation } from '../services/customHooks'
 import { weatherService } from '../services/weatherService'
@@ -13,7 +12,7 @@ import { toggleIsMobile } from '../actions/WeatherActions'
 export const Home = () => {
 
     const { isDark, isHome } = useSelector(state => state.weatherModule)
-    // const location = useGeolocation()
+    const location = useGeolocation()
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -21,20 +20,15 @@ export const Home = () => {
         dispatch(toggleIsHome(true))
     }, [])
 
+   
     useEffect(() => {
-        console.log(isHome, 'isHome');
-    }, [isHome])
-
-
-    // useEffect(() => {
-    //     if (!location.isReady) return
-    //     (async () => {
-    //         console.log(location.isReady);
-    //         const resp = await weatherService.getGeolocation(location.coordinates)
-    //         console.log("🚀 ~ file: Home.jsx ~ line 22 ~ resp", resp)
-    //         setCurrentLocation(resp)
-    //     })()
-    // }, [location])
+        if (!location.isReady) return
+        (async () => {
+            // const resp = await weatherService.getGeolocation(location.coordinates)
+            // console.log("🚀 ~ file: Home.jsx ~ line 22 ~ resp", resp)
+            // dispatch(setCurrentLocation)(resp)
+        })()
+    }, [location])
 
 
 

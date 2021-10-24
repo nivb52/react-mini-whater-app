@@ -1082,7 +1082,7 @@ let defualtWeatherByHour = [
 //     }
 // }]// _loadLocations()
 
-let gFavoriteLocations =  _loadLocations()
+let gFavoriteLocations = _loadLocations()
 
 const setCurrentLocation = (location) => {
     storageService.saveToStorage(CURRENT_LOCATION_KEY, location)
@@ -1090,7 +1090,7 @@ const setCurrentLocation = (location) => {
     return Promise.resolve(location)
 }
 
-const getDefaultLocation = async() => {
+const getDefaultLocation = async () => {
     // let location=await _loadCurrentLocation()
     // return Promise.resolve( location)
     return { ...defualtLocation }
@@ -1115,7 +1115,7 @@ function query() {
 
 function remove(locationToRemove) {
     if (gFavoriteLocations.length === 0) return
-    const idx = gFavoriteLocations.findIndex(location => location.info.Key === locationToRemove.Key)
+    const idx = gFavoriteLocations.findIndex(location => location.info.Key === locationToRemove.info.Key)
     gFavoriteLocations.splice(idx, 1)
     storageService.saveToStorage(LOCATIONS_KEY, gFavoriteLocations)
     return Promise.resolve()
@@ -1139,8 +1139,8 @@ function _loadLocations() {
     storageService.saveToStorage(LOCATIONS_KEY, locations)
     return locations
 }
- async function  _loadCurrentLocation() {
-    let location =await storageService.loadFromStorage(CURRENT_LOCATION_KEY)
+async function _loadCurrentLocation() {
+    let location = await storageService.loadFromStorage(CURRENT_LOCATION_KEY)
     if (!location?.info || !location) location = defualtLocation
     storageService.saveToStorage(CURRENT_LOCATION_KEY, location)
     return location.info

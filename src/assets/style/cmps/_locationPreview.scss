@@ -42,20 +42,26 @@
         }
     }
 
-    @include for-narrow-layout {
-        .title {
-            font-size: 1rem;
-        }
-    }
     @include for-normal-layout {
+        img{
+            max-width: 300px;
+        }
         .title {
             font-size: 1.5rem;
+        }
+    }
+    @include for-narrow-layout {
+        img{
+            min-width: 135px;
+        }
+        .title {
+            font-size: 1rem;
         }
     }
     @include for-mobile-layout {
         margin-left: 0;
         p {
-            font-size: 12px;
+            font-size: 22px;
         }
         .weather-card {
             padding: 2px;
