@@ -9,7 +9,7 @@ export const WeatherByHour = () => {
     const [weatherByHour, setWeatherByHour] = useState([])
     const [chartData, setChartData] = useState(null)
     const [chartLabel, setChartLabel] = useState(null)
-    const { isDark, isCelsius, currentLocation } = useSelector(state => state.weatherModule)
+    const { isDark, isCelsius, currentLocation, isMobile } = useSelector(state => state.weatherModule)
 
     const data = {
         labels: chartLabel,
@@ -65,8 +65,8 @@ export const WeatherByHour = () => {
         setWeatherByHour(locationService.getDefualtWeatherByHour())
     }, [])
 
-    useEffect( () => {
-        (async () => { 
+    useEffect(() => {
+        (async () => {
             if (currentLocation) {
                 const resp = await weatherService.getWeatherByHour(currentLocation)
                 setWeatherByHour(resp)
@@ -106,7 +106,7 @@ export const WeatherByHour = () => {
         <section className="weather-by-hour">
             {chartLabel && chartData &&
                 <Line
-                    height={50}
+                    height={isMobile ? 150 : 50}
                     data={data}
                     options={options} />}
         </section>
