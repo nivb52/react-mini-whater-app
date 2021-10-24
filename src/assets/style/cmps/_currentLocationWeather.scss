@@ -7,27 +7,24 @@
     }
 
     @include for-narrow-layout {
-        flex-direction: column;
-        .right-container {
-            justify-content: space-between;
-        }
-        @include for-normal-layout {
-            flex-direction: row;
             .current-info {
                 p {
                     line-height: 1.2;
                     &:first-child {
-                        font-size: 26px;
+                        font-size: 20px;
                         font-weight: bolder;
                     }
-                    font-size: 20px;
+                    font-size: 16px;
                 }
             }
-        }
+        // }
     }
 
     .info-container {
         @include for-mobile-layout {
+            &>p{
+                width: 80px;
+            }
             p {
                 font-size: 68px;
                 margin-left: 10px;
@@ -44,14 +41,17 @@
         }
 
         @include for-narrow-layout {
+            &>p{
+                width: 50px;
+            }
             p {
-                font-size: 68px;
+                font-size: 40px;
                 margin-left: 10px;
                 margin-top: -4px;
             }
             img {
-                height: 100px;
-                width: 100px;
+                height: 50px;
+                width: 50px;
             }
             .unit-selector {
                 margin-top: -10px;

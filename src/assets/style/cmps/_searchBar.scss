@@ -27,6 +27,17 @@
             margin-left: 20px;
             margin-right: -50px;
         }
+        @include for-narrow-layout {
+            .loupe {
+                display: none;
+            }
+            input {
+                padding: 10px 0px;
+                font-size: 16px;
+                margin-right: -79px;
+                border: none;
+            }
+        }
 
         @include for-mobile-layout {
             .loupe {
