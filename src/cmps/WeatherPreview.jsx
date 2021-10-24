@@ -17,16 +17,13 @@ export const WeatherPreview = ({ dailyForecast }) => {
         return daysOfWeek[today]
     }
 
-
-
     const setBackground = () => {
         return isDark ? '#4c5055' : '#fff'
     }
 
-    const { fToC,setIcon } = weatherService
-    const { Minimum,Maximum } = dailyForecast.Temperature
+    const { fToC, setIcon } = weatherService
+    const { Minimum, Maximum } = dailyForecast.Temperature
 
-    
     return (
         <Box className="weather-preview" key={dailyForecast.EpochDate}>
             <Card

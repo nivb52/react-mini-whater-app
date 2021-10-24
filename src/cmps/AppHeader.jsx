@@ -33,7 +33,6 @@ export function AppHeader() {
                     <DNToggle />
                     <div className="cf-container flex column">
                     </div>
-                    {/* <Link to='/'> <img src="imgs/logo.png" alt="" /></Link> */}
                 </div>
             </nav>
         </header>

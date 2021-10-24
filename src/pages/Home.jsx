@@ -3,15 +3,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { CurrentLocationWeather } from '../cmps/CurrentLocationWeather'
 import { WeatherList } from '../cmps/WeatherList'
 import { useGeolocation } from '../services/customHooks'
-import { weatherService } from '../services/weatherService'
 import { toggleIsHome } from '../actions/WeatherActions'
 import { WeatherByHour } from '../cmps/WeatherByHour'
 import { toggleIsMobile } from '../actions/WeatherActions'
 
-
 export const Home = () => {
 
-    const { isDark, isHome } = useSelector(state => state.weatherModule)
+    const { isDark } = useSelector(state => state.weatherModule)
     const location = useGeolocation()
     const dispatch = useDispatch()
 
@@ -30,8 +28,6 @@ export const Home = () => {
         })()
     }, [location])
 
-
-
     const checkScreenWidth = () => {
         if (window.innerWidth > 485) {
             dispatch(toggleIsMobile(false))
@@ -39,7 +35,6 @@ export const Home = () => {
             dispatch(toggleIsMobile(true))
         }
     }
-
 
     return (
         <section className={isDark ? 'dark main-container' : 'main-container'} >

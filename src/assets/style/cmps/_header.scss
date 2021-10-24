@@ -47,7 +47,6 @@
 }
 .menu-btn {
     display: none;
-
     @include for-mobile-layout {
         display: block;
     }

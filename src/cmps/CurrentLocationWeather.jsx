@@ -3,10 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { ReactComponent as Heart } from '../assets/svg/heart.svg'
 import { ReactComponent as FilledHeart } from '../assets/svg/filled-heart.svg'
 import { useDispatch, useSelector } from 'react-redux'
-// import { favoriteLocationService } from '../services/favoriteLocationService'
 import { saveToFavorites, removeFromFavorites, toggleCelsius, setCurrentLocation } from '../actions/WeatherActions'
 import { locationService } from '../services/locationService'
-import { storageService } from '../services/storageService'
 import { weatherService } from '../services/weatherService'
 import { SearchBar } from './SearchBar'
 
@@ -27,7 +25,7 @@ export const CurrentLocationWeather = () => {
                     if (isLiking) saveToFavorites(currentLocation)
                 }
                 else {
-                    if (!isLiking) removeFromFavorites(currentLocation) // REVERT
+                    if (!isLiking) removeFromFavorites(currentLocation) 
                 }
             }
         })()
@@ -54,11 +52,11 @@ export const CurrentLocationWeather = () => {
             <div className="info-container flex">
                 {!isDark && currentLocation && <img src={`https://www.accuweather.com/images/weathericons/${weatherService.setIcon(currentLocation?.currWeather[0]?.Day?.Icon)}.svg`} alt="" />}
                 {isDark && currentLocation && <img src={`https://www.accuweather.com/images/weathericons/${weatherService.setIcon(currentLocation?.currWeather[0]?.Night?.Icon)}.svg`} alt="" />}
-                {!isDark&&isCelsius && <p>{weatherService.fToC(currentLocation?.currWeather[0]?.Temperature?.Maximum?.Value)}</p>}
-                {!isDark&&!isCelsius && <p>{currentLocation?.currWeather[0]?.Temperature?.Maximum?.Value}</p>}
-                {isDark&&isCelsius && <p>{weatherService.fToC(currentLocation?.currWeather[0]?.Temperature?.Minimum?.Value)}</p>}
-                {isDark&&!isCelsius && <p>{currentLocation?.currWeather[0]?.Temperature?.Minimum?.Value}</p>}
-                <div className="unit-selector pointer">
+                {!isDark && isCelsius && <p>{weatherService.fToC(currentLocation?.currWeather[0]?.Temperature?.Maximum?.Value)}</p>}
+                {!isDark && !isCelsius && <p>{currentLocation?.currWeather[0]?.Temperature?.Maximum?.Value}</p>}
+                {isDark && isCelsius && <p>{weatherService.fToC(currentLocation?.currWeather[0]?.Temperature?.Minimum?.Value)}</p>}
+                {isDark && !isCelsius && <p>{currentLocation?.currWeather[0]?.Temperature?.Minimum?.Value}</p>}
+                <div className="unit-selector select pointer">
                     <span className={isCelsius ? 'bold' : ''} onClick={() => { dispatch(toggleCelsius(true)) }} >°C</span> |
                     <span className={!isCelsius ? 'bold' : ''} onClick={() => { dispatch(toggleCelsius(false)) }}> °F</span>
                 </div>

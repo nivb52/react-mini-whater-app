@@ -2,8 +2,7 @@
     margin-top: 20px;
     display: flex;
     margin-left: 10px;
-    
-    &:first-child{
+    &:first-child {
         margin-left: 0;
     }
 
@@ -37,7 +36,6 @@
                     margin: 10px 0;
                 }
                 .tempature {
-                    
                     margin: 10px 5px;
                     display: flex;
                     &.min {

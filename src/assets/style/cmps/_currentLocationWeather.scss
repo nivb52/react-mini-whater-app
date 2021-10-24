@@ -7,22 +7,21 @@
     }
 
     @include for-narrow-layout {
-            .current-info {
-                p {
-                    line-height: 1.2;
-                    &:first-child {
-                        font-size: 20px;
-                        font-weight: bolder;
-                    }
-                    font-size: 16px;
+        .current-info {
+            p {
+                line-height: 1.2;
+                &:first-child {
+                    font-size: 20px;
+                    font-weight: bolder;
                 }
+                font-size: 16px;
             }
-        // }
+        }
     }
 
     .info-container {
         @include for-mobile-layout {
-            &>p{
+            & > p {
                 width: 80px;
             }
             p {
@@ -35,13 +34,14 @@
                 width: 100px;
             }
             .unit-selector {
+                user-select: none;
                 margin-top: -10px;
                 margin-left: 5px;
             }
         }
 
         @include for-narrow-layout {
-            &>p{
+            & > p {
                 width: 50px;
             }
             p {
@@ -87,8 +87,8 @@
 
         .current-info {
             font-size: 30px;
-            p{
-                &:last-child{
+            p {
+                &:last-child {
                     font-size: 20px;
                     margin-top: -10px;
                 }

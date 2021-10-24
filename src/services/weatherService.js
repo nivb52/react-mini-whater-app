@@ -8,7 +8,6 @@ const KEY = 'dKKw50ewg2TV00RDzBmObRNk3e1wybJo'
 // const KEY = ''
 
 async function getFiveDaysWeather(key) {
-    // if (key === undefined) return
     try {
         const resp = await axios.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=${KEY}`)
         return resp.data.DailyForecasts
@@ -44,7 +43,7 @@ async function getGeolocation(position) {
                 headers: {
                     "Access-Control-Allow-Origin": "*",
                     "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT"
-                    
+
                 }
             }
         )

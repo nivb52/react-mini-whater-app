@@ -6,14 +6,12 @@ import { queryLocations,toggleIsHome } from '../actions/WeatherActions'
 
 
 export const Favorites = () => {
-
     const { favoriteLocations, isDark } = useSelector(state => state.weatherModule)
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(queryLocations())
         dispatch(toggleIsHome(false))
-
     }, [])
 
     return (

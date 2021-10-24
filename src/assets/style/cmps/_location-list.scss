@@ -1,7 +1,4 @@
 .location-list {
-    // flex-wrap: wrap;
-
-
     justify-content: center;
     .no-favorites {
         display: flex;
@@ -21,9 +18,6 @@
     }
     @include for-narrow-layout {
         flex-wrap: wrap;
-        // .location-preview {
-        //     margin-left: 0;
-        // }
     }
     @include for-normal-layout {
         flex-wrap: nowrap;

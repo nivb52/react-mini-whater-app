@@ -2,14 +2,10 @@
     margin-top: 20px;
     display: flex;
     margin-left: 10px;
-    // position: relative;
 
     &:first-child {
         margin-left: 0;
     }
-    // &:last-child {
-    //     margin-left: 0;
-    // }
     p {
         padding: 10px;
         font-size: 1.2rem;
@@ -43,7 +39,7 @@
     }
 
     @include for-normal-layout {
-        img{
+        img {
             max-width: 300px;
         }
         .title {
@@ -51,7 +47,7 @@
         }
     }
     @include for-narrow-layout {
-        img{
+        img {
             min-width: 135px;
         }
         .title {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Line } from 'react-chartjs-2';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { locationService } from '../services/locationService';
 import { weatherService } from '../services/weatherService';
 
@@ -9,7 +9,7 @@ export const WeatherByHour = () => {
     const [weatherByHour, setWeatherByHour] = useState([])
     const [chartData, setChartData] = useState(null)
     const [chartLabel, setChartLabel] = useState(null)
-    const { currentLocation, isDark, isCelsius, isMobile } = useSelector(state => state.weatherModule)
+    const { isDark, isCelsius } = useSelector(state => state.weatherModule)
 
     const data = {
         labels: chartLabel,
@@ -28,8 +28,6 @@ export const WeatherByHour = () => {
         responsive: true,
         customTooltips: false,
         scaleShowLabels: false,
-
-
         elements: {
             point: {
                 radius: 0
@@ -73,14 +71,6 @@ export const WeatherByHour = () => {
     }, [weatherByHour])
 
     useEffect(() => {
-        // (async () => {
-        //     if (currentLocation !== undefined) {
-        //         const resp = await weatherService.getWeatherByHour(currentLocation.Key)
-        //     }
-        // })()
-    }, [currentLocation])
-
-    useEffect(() => {
         onSetData()
     }, [isCelsius])
 
@@ -109,7 +99,6 @@ export const WeatherByHour = () => {
             {chartLabel && chartData &&
                 <Line
                     height={50}
-                    // width={isMobile ? 100 : ''}
                     data={data}
                     options={options} />}
 

@@ -1,8 +1,7 @@
 import React from 'react'
 import { Box, Card } from "@material-ui/core";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { queryLocations,removeFromFavorites, setCurrentLocation } from '../../actions/WeatherActions'
+import { queryLocations, removeFromFavorites, setCurrentLocation } from '../../actions/WeatherActions'
 import { weatherService } from '../../services/weatherService';
 import { locationService } from '../../services/locationService';
 import { ReactComponent as Trash } from '../../assets/svg/trash.svg'
@@ -29,7 +28,6 @@ export const LocationPreview = ({ location }) => {
 
     const { fToC, setIcon } = weatherService
 
-
     const onSetCurrentLocation = (ev) => {
         ev.stopPropagation()
         ev.preventDefault()
@@ -41,12 +39,11 @@ export const LocationPreview = ({ location }) => {
     return (
         <Box
             className="location-preview pointer"
-            key={location.info.Key}
-          
-        >
+            key={location.info.Key}>
             <Card
-              onClick={(ev) => { 
-                onSetCurrentLocation(ev) }}
+                onClick={(ev) => {
+                    onSetCurrentLocation(ev)
+                }}
                 style={{
                     backgroundColor: setBackground()
                 }}
@@ -66,8 +63,7 @@ export const LocationPreview = ({ location }) => {
                     </div>
                     <Trash
                         className='delete-btn pointer'
-                        onClick={(ev) => {onRemove(ev)}}
-                    />
+                        onClick={(ev) => { onRemove(ev) }} />
                 </div>
             </Card>
         </Box >

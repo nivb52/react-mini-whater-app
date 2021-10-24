@@ -1,7 +1,6 @@
 import { locationService } from "../services/locationService";
 import { weatherService } from "../services/weatherService";
 
-
 // Dispatchers
 const _setFilter = (filterBy) => ({ type: 'SET_FILTER', filterBy });
 const _toggleDark = () => ({ type: 'TOGGLE_DARK' });

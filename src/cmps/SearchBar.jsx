@@ -7,8 +7,6 @@ import { setCurrentLocation } from '../actions/WeatherActions'
 import { locationService } from '../services/locationService';
 import { ReactComponent as Loupe } from '../assets/svg/loupe.svg'
 
-
-
 export const SearchBar = () => {
 
     const [display, setDisplay] = useState(true)
@@ -19,15 +17,11 @@ export const SearchBar = () => {
     const { isDark } = useSelector(state => state.weatherModule)
     const inputRef = useRef()
 
-
     useEffect(() => {
         (async () => {
             const defaultLocation = await locationService.getDefaultLocation()
             setLocation(defaultLocation)
         })()
-
-        // setOptions(storageService.loadFromStorage('locationOptions'))
-
     }, [])
 
     useEffect(() => {
@@ -66,15 +60,16 @@ export const SearchBar = () => {
 
                 <Loupe className={isDark ? "loupe fill-dark" : "loupe"} />
             </div>
-            {display && //REVERT
+            {display &&
                 <div
                     className={isDark ? ' options-container dark' : 'options-container'}>
                     {options && options?.map(option => {
                         return (
                             <div
-                                onClick={() => { 
-                                     inputRef.current.value = option.LocalizedName
-                                    setLocation(option) }}
+                                onClick={() => {
+                                    inputRef.current.value = option.LocalizedName
+                                    setLocation(option)
+                                }}
                                 className={isDark ? 'dark location-option' : 'light location-option'}
                                 key={option.Key}>
                                 <span>{option.LocalizedName}</span>
