@@ -24,7 +24,6 @@ export const Home = () => {
     }, [windowSize])
 
     const checkScreenWidth = () => {
-        console.log('in');
         if (windowSize.width > 485) {
             dispatch(toggleIsMobile(false))
         } else {
