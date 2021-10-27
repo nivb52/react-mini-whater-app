@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { width } from "@mui/system";
+import React, { useEffect, useState } from "react";
 import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
+import useWindowSize from "../services/customHooks";
 import { locationService } from '../services/locationService';
 import { weatherService } from '../services/weatherService';
+
 
 export const WeatherByHour = () => {
 
@@ -25,6 +28,7 @@ export const WeatherByHour = () => {
     };
 
     const options = {
+        maintainAspectRatio: false,
         responsive: true,
         customTooltips: false,
         scaleShowLabels: false,
@@ -60,6 +64,7 @@ export const WeatherByHour = () => {
             }
         }
     };
+
 
     useEffect(() => {
         setWeatherByHour(locationService.getDefualtWeatherByHour())
@@ -102,13 +107,14 @@ export const WeatherByHour = () => {
         setChartLabel(data)
     }
 
+
     return (
-        <section className="weather-by-hour">
-            {chartLabel && chartData &&
-                <Line
-                    height={isMobile ? 150 : 50}
-                    data={data}
-                    options={options} />}
+        <section
+            className="weather-by-hour flex">
+                {chartLabel && chartData &&
+                    <Line
+                        data={data}
+                        options={options} />}
         </section>
     )
 }

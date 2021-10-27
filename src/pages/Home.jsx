@@ -5,19 +5,27 @@ import { WeatherList } from '../cmps/WeatherList'
 import { toggleIsHome } from '../actions/WeatherActions'
 import { WeatherByHour } from '../cmps/WeatherByHour'
 import { toggleIsMobile } from '../actions/WeatherActions'
+import useWindowSize from '../services/customHooks'
+import { size } from 'lodash'
 
 export const Home = () => {
 
     const { isDark } = useSelector(state => state.weatherModule)
     const dispatch = useDispatch()
+    const windowSize= useWindowSize()
 
     useEffect(() => {
         checkScreenWidth()
         dispatch(toggleIsHome(true))
     }, [])
 
+    useEffect(() => {
+        checkScreenWidth()
+    }, [windowSize])
+
     const checkScreenWidth = () => {
-        if (window.innerWidth > 485) {
+        console.log('in');
+        if (windowSize.width > 485) {
             dispatch(toggleIsMobile(false))
         } else {
             dispatch(toggleIsMobile(true))
